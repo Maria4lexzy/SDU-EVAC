@@ -4,10 +4,9 @@
 ### Build container images
 
 ```console
-//in \Frontend Folder 
- docker build -f Dockerfile --no-cache -t sdu-evac-frontend .
 
- //in \Backend Folder 
+docker build -f Dockerfile --no-cache -t sdu-evac-frontend .
+
 docker build -f Dockerfile --no-cache -t sdu-evac-backend .
 ```
 ### Start minikube and setup docker/insecure-registry
@@ -26,7 +25,7 @@ minikube ip
 }
 ```
 ### load images
-**First create deployment and service files**
+
 ```console
 minikube image load sdu-evac-frontend
 minikube image load sdu-evac-backend
@@ -65,21 +64,10 @@ helm install redis bitnami/redis --set rchitecture=standalone --set auth.enabled
 ```console
 kubectl apply -f ./Session/manifests
 ```
-### Apply manifests
+### Port forward
 
 ```console
  kubectl port-forward services/sdu-evac-backend 3000:80
- kubectl port-forward services/sdu-evac-frontend 8887:80
  minikube service sdu-evac-frontend --url
 ```
 
-## Playbook 2
-
-### Terraform apply
-
-```console
- choco install terraformy
- 
-terraform -chdir=Session/terraform init
-terraform -chdir=Session/terraform apply
-```
