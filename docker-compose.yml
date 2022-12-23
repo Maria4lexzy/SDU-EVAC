@@ -1,0 +1,19 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  frontend:
+    build: ./Frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+  backend:
+    build: ./Backend
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - NODE_ENV=development
+      - MONGO_DB_CONNECTION_STRING=mongodb+srv://mafai21:Guessit17@cluster0.heaauby.mongodb.net/CloudComp
+      - MONGO_DB_NAME=CloudComp
+      - REDIS_URI=redis://localhost:6379
+      
